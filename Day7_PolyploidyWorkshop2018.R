@@ -122,10 +122,12 @@ getFits = function(freqs, s, h1, h, h3){
 }
 
 # Generate fixation probabilities for diploids for a given initial frequency, selection coefficient and population size
-getFix = function(p, s, N){
-  num = 1 - exp(-4*N*s*p)
-  den = 1 - exp(-4*N*s)
-  return(num / den)
+getFix = function(p, s, N, ploidy){
+  num = 1 - exp(-2 * ploidy * N * s * p)
+  den = 1 - exp(-2 * ploidy * N * s)
+  fp = num / den
+  t = (2 * log(ploidy * N - 1)) / s
+  return(data.frame("fix.prob" = fp, "fix.time" = t))
 }
 
 #Functions for simulating selective sweep trajectories and running coalescent simulations
@@ -401,10 +403,10 @@ var_fit = ggplot(fits, aes(x=freq, y=var.w, color = as.factor(ploidy), linetype=
 
 #Generate allele frequency trajectory for diploids and tetraploids given selection strength and dominance
 s = 0.1
-h = 0.5
-h1 = 0.25
-h2 = 0.5
-h3 = 0.75
+h = 1
+h1 = 1
+h2 = 1
+h3 = 1
 
 traj1 = rbind(dipTraj(s, h, 0.05, 0.99, 9999), tetTraj(s, h1, h2, h3, 0.05, 0.99, 9999))
 
