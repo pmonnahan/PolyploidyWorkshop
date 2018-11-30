@@ -394,10 +394,10 @@ ggplot(freqs, aes(x = p, y = value, color = as.factor(Ploidy), group = variable)
 fits = getFits(seq(0, 1, 0.01), c(0.1, 0.01, 0.001), c(0.25, 1, 0), c(0.5, 1, 0), c(0.75, 1, 0))
 
 # Plot mean fitness 
-ggplot(fits[fits$s==0.1,], aes(x=freq, y=w.bar, color = as.factor(ploidy), linetype=as.factor(h))) + geom_line() + scale_color_manual(name="Ploidy",values=c("red","blue")) + scale_linetype_discrete(name="Dominance", labels=c("Recessive","Additive","Dominant")) + xlab("Allele Frequency") + ylab("Mean Fitness") + theme_bw()
+mean_fit = ggplot(fits[fits$s==0.1,], aes(x=freq, y=w.bar, color = as.factor(ploidy), linetype=as.factor(h))) + geom_line() + scale_color_manual(name="Ploidy",values=c("red","blue")) + scale_linetype_discrete(name="Dominance", labels=c("Recessive","Additive","Dominant")) + xlab("Allele Frequency") + ylab("Mean Fitness") + theme_bw()
 
 # Plot variance in fitness
-ggplot(fits, aes(x=freq, y=var.w, color = as.factor(ploidy), linetype=as.factor(h))) + geom_line() + scale_color_manual(name="Ploidy",values=c("red","blue")) + scale_linetype_discrete(name="Dominance", labels=c("Recessive","Additive","Dominant")) + facet_wrap(~s, scale = "free_y")+ xlab("Allele Frequency") + ylab("Variance in Fitness") + theme_bw()
+var_fit = ggplot(fits, aes(x=freq, y=var.w, color = as.factor(ploidy), linetype=as.factor(h))) + geom_line() + scale_color_manual(name="Ploidy",values=c("red","blue")) + scale_linetype_discrete(name="Dominance", labels=c("Recessive","Additive","Dominant")) + facet_wrap(~s, scale = "free_y")+ xlab("Allele Frequency") + ylab("Variance in Fitness") + theme_bw()
 
 #Generate allele frequency trajectory for diploids and tetraploids given selection strength and dominance
 s = 0.1
@@ -409,13 +409,13 @@ h3 = 0.75
 traj1 = rbind(dipTraj(s, h, 0.05, 0.99, 9999), tetTraj(s, h1, h2, h3, 0.05, 0.99, 9999))
 
 # Plot allele frequency change over time for additive beneficial allele
-ggplot(traj1, aes(x=gen, y=freq, color=ploidy)) + geom_line() + scale_color_manual(name="Ploidy",values=c('red','blue')) + theme_bw() + xlab("Generation") + ylab("Allele Frequency")
+traj_plot = ggplot(traj1, aes(x=gen, y=freq, color=ploidy)) + geom_line() + scale_color_manual(name="Ploidy",values=c('red','blue')) + theme_bw() + xlab("Generation") + ylab("Allele Frequency")
 
 #Generate allele frequency trajectory for a range of basic values of s and h
 traj = simTraj()
 
 # Plot allele frequency change over time for additive, dominant, and recessive beneficial allele
-ggplot(traj[traj$s==0.1,], aes(x=gen, y=freq, linetype=as.factor(h), color=ploidy)) + geom_line() + scale_color_manual(name="Ploidy",values=c("red","blue")) + scale_linetype_discrete(name="Dominance", labels=c("Recessive","Additive","Dominant")) + xlab("Generation") + ylab("Allele Frequency") + theme_bw() + xlim(0,300)
+traj_all_plot = ggplot(traj[traj$s==0.1,], aes(x=gen, y=freq, linetype=as.factor(h), color=ploidy)) + geom_line() + scale_color_manual(name="Ploidy",values=c("red","blue")) + scale_linetype_discrete(name="Dominance", labels=c("Recessive","Additive","Dominant")) + xlab("Generation") + ylab("Allele Frequency") + theme_bw() + xlim(0,300)
 
 # Perform stochastic simulations for selection on beneficial allele
 ploidy = 2

@@ -212,7 +212,7 @@ msselRun = function(N, n, trajectory, name, L = 1000000, mu = 1e-8, r = 1e-8, pl
   return(cmd1)
 }
 
-msselCalc <- function(in_file, numWindows, slideRate=0.5, selPop=1, linkage_stats = c("Kelly.Z_nS"), neutrality_stats = c("Tajima.D", "Fay.Wu.H", "Zeng.E")){
+msselCalc <- function(in_file, numWindows, outgroup, slideRate=0.5, selPop=1, linkage_stats = c("Kelly.Z_nS"), neutrality_stats = c("Tajima.D", "Fay.Wu.H", "Zeng.E")){
   # Define some necessary functions
   read.ms.output2 <- function(txt=NA, file.ms.output=NA, MSMS=FALSE) {
     
@@ -342,8 +342,8 @@ msselCalc <- function(in_file, numWindows, slideRate=0.5, selPop=1, linkage_stat
     colnames(dxy)[2] = 'dxy'
     fst = dcast(melt(inp@nuc.F_ST.pairwise), Var2 ~ Var1, value.var="value")
     colnames(fst)[2] = 'fst'
-    DF = cbind(DF, dxy)
-    DF = cbind(DF, fst)
+    DF = cbind(DF, dxy)[,-2]
+    DF = cbind(DF, fst)[,-2]
     DF$selPop = selPop
     return(DF)
   }
@@ -363,19 +363,19 @@ msselCalc <- function(in_file, numWindows, slideRate=0.5, selPop=1, linkage_stat
   sim=diversity.stats.between(sim)
   
   ## EXPERIMENTAL ##
-  # sim = set.outgroup(sim, new.outgroup = seq(1,20))
+  sim = set.outgroup(sim, new.outgroup = outgroup)
   ## ##########
   
   # Divide simulated data into windows (type=1: based on SNP counts; type=2: based on nucleotide counts)
-  print(paste("","Creating windows...", sep = "\n"))
+  cat(paste("","Creating windows...", "", sep = "\n"))
   sim.slide = sliding.window.transform(sim, width = winSize, jump = winSize * slideRate, type = 1, whole.data = FALSE)
-  print(paste("Done", "Calculating metrics...", sep = "\n"))
+  cat(paste("Done", "Calculating metrics...", "", sep = "\n"))
   sim.slide = diversity.stats(sim.slide)
   sim.slide = diversity.stats.between(sim.slide)
   sim.slide = linkage.stats(sim.slide)
   sim.slide = F_ST.stats(sim.slide)
   sim.slide = neutrality.stats(sim.slide, detail=TRUE)
-  print(paste("Done", "Munging data..."), sep = "\n")
+  cat(paste("Done", "Munging data...", "", sep = "\n"))
   df = munge(sim.slide, Nsites, positions, selPop)
   df$mid = (df$bp.end + df$bp.start)/2
   df$bp.len = (df$bp.end - df$bp.start)
@@ -394,6 +394,8 @@ msselCalc <- function(in_file, numWindows, slideRate=0.5, selPop=1, linkage_stat
 ## Class example data
 
 ```{r pressure, echo=FALSE}
+
+
 # Calculate diploid/tetraploid genotype frequencies across entire range of allele frequency values
 freqs = genoFreqs(seq(0,1,0.01))
 
@@ -403,29 +405,29 @@ ggplot(freqs, aes(x = p, y = value, color = as.factor(Ploidy), group = variable)
 # Calculate diploid/tetraploid fitness metrics across entire range of allele frequency values
 fits = getFits(seq(0, 1, 0.01), c(0.1, 0.01, 0.001), c(0.25, 1, 0), c(0.5, 1, 0), c(0.75, 1, 0))
 
-# Plot mean fitness 
-ggplot(fits[fits$s==0.1,], aes(x=freq, y=w.bar, color = as.factor(ploidy), linetype=as.factor(h))) + geom_line() + scale_color_manual(name="Ploidy",values=c("red","blue")) + scale_linetype_discrete(name="Dominance", labels=c("Recessive","Additive","Dominant")) + xlab("Allele Frequency") + ylab("Mean Fitness") + theme_bw()
+# Plot mean fitness
+mean_fit = ggplot(fits[fits$s==0.1,], aes(x=freq, y=w.bar, color = as.factor(ploidy), linetype=as.factor(h))) + geom_line() + scale_color_manual(name="Ploidy",values=c("red","blue")) + scale_linetype_discrete(name="Dominance", labels=c("Recessive","Additive","Dominant")) + xlab("Allele Frequency") + ylab("Mean Fitness") + theme_bw()
 
 # Plot variance in fitness
 ggplot(fits, aes(x=freq, y=var.w, color = as.factor(ploidy), linetype=as.factor(h))) + geom_line() + scale_color_manual(name="Ploidy",values=c("red","blue")) + scale_linetype_discrete(name="Dominance", labels=c("Recessive","Additive","Dominant")) + facet_wrap(~s, scale = "free_y")+ xlab("Allele Frequency") + ylab("Variance in Fitness") + theme_bw()
 
-#Generate allele frequency trajectory for diploids and tetraploids given selection strength and dominance
+#Generate allele frequency trajectory for diploids and tetraploids given selection strength and dominance (Q89)
 s = 0.1
 h = 0.5
-h1 = 0.25
+h1 = 0.5
 h2 = 0.5
-h3 = 0.75
+h3 = 0.5
 
 traj1 = rbind(dipTraj(s, h, 0.05, 0.99, 9999), tetTraj(s, h1, h2, h3, 0.05, 0.99, 9999))
 
 # Plot allele frequency change over time for additive beneficial allele
-ggplot(traj1, aes(x=gen, y=freq, color=ploidy)) + geom_line() + scale_color_manual(name="Ploidy",values=c('red','blue')) + theme_bw() + xlab("Generation") + ylab("Allele Frequency")
+traj_plot = ggplot(traj1, aes(x=gen, y=freq, color=ploidy)) + geom_line() + scale_color_manual(name="Ploidy",values=c('red','blue')) + theme_bw() + xlab("Generation") + ylab("Allele Frequency")
 
 #Generate allele frequency trajectory for a range of basic values of s and h
 traj = simTraj()
 
 # Plot allele frequency change over time for additive, dominant, and recessive beneficial allele
-ggplot(traj[traj$s==0.1,], aes(x=gen, y=freq, linetype=as.factor(h), color=ploidy)) + geom_line() + scale_color_manual(name="Ploidy",values=c("red","blue")) + scale_linetype_discrete(name="Dominance", labels=c("Recessive","Additive","Dominant")) + xlab("Generation") + ylab("Allele Frequency") + theme_bw() + xlim(0,300)
+traj_all_plot = ggplot(traj[traj$s==0.1,], aes(x=gen, y=freq, linetype=as.factor(h), color=ploidy)) + geom_line() + scale_color_manual(name="Ploidy",values=c("red","blue")) + scale_linetype_discrete(name="Dominance", labels=c("Recessive","Additive","Dominant")) + xlab("Generation") + ylab("Allele Frequency") + theme_bw() + xlim(0,300)
 
 # Perform stochastic simulations for selection on beneficial allele
 ploidy = 2
