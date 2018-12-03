@@ -1,0 +1,278 @@
+
+SPAGeDi 1.5d (build 02-06-2017) - a program for Spatial Pattern Analysis of Genetic Diversity
+               Written by Olivier Hardy & Xavier Vekemans
+               Contributions by Reed Cartwright
+
+Input file : "/Users/pmonnahan/Documents/Research/software/spagedi/example_data/DataAllozymes-diploids_and_tetraploids.txt"
+Results file : "/Users/pmonnahan/Documents/Research/software/spagedi/example_data/out.txt"
+139 individuals
+2 categories: 2x, 4x
+2 spatial coordinates, X, Y
+5 loci: LAP, PGD, DIA, PGM1, PGM2
+2 digits per allele
+Max ploidy announced: 4
+# indiv within each ploidy:  4x=73,   2x=65
+  WARNING: There is(are) 1 individual(s) without genotype at any locus
+
+# groups (min - max # indiv per group): 
+  2 categorical groups (65 - 74)
+  0 spatial groups
+  0 spatio-categorical groups
+
+GENE DIVERSITY and ALLELE FREQUENCIES
+Locus	Population	Sample size	# missing genotypes (%)	# incomplete genotypes (%)	# of defined gene copies	NA: # alleles	NAe: Effective # alleles (Nielsen et al. 2003)	AR(k=98): Allelic richness (expected number of alleles among 98 gene copies)	He (gene diversity corrected for sample size, Nei 1978)	Ho (observed heterozygosity)	Fi (individual inbreeding coefficient)	Pval(Fi<>0) after 999 randomization of gene copies among individuals	h (gene diversity with UNORDERED alleles, Pons & Petit 1996)
+
+Multilocus average														
+Multilocus average	All populations confounded	139	22.2 (16.0%)	0.0 (0.0%)	352.4	4.00	1.99	3.66	0.4306	0.372	0.129	0.0000	0.4547	
+Multilocus average	2x	65	7.6 (11.7%)	0.0 (0.0%)	114.8	2.40	1.81	2.40	0.3305	0.326	0.013	0.8240	0.3305	
+Multilocus average	4x	74	14.6 (19.7%)	0.0 (0.0%)	237.6	4.00	2.04	3.73	0.4747	0.414	0.128	0.0000	0.4747	
+
+LAP															LAP alleles:	1	2	3	4	5	6	7	8	9
+LAP	All populations confounded	139	17 (12.2%)	0 (0.0%)	376	9	3.49	7.48	0.7138	0.668	0.089	0.0040	0.7243		frequency	0.00204918	0.00204918	0.0327869	0.10041	0.403689	0.32582	0.079918	0.0266393	0.0266393
+LAP	2x	65	9 (13.8%)	0 (0.0%)	112	4	3.46	4.00	0.7112	0.714	-0.004	0.9800	0.7112		frequency	0	0	0	0.178571	0.410714	0.276786	0.133929	0	0
+LAP	4x	74	8 (10.8%)	0 (0.0%)	264	9	3.32	7.71	0.6986	0.629	0.101	0.0020	0.6986		frequency	0.00378788	0.00378788	0.0606061	0.0340909	0.397727	0.367424	0.0340909	0.0492424	0.0492424
+
+PGD															PGD alleles:	1	2	3	4
+PGD	All populations confounded	139	2 (1.4%)	0 (0.0%)	418	4	1.38	3.85	0.2752	0.251	-0.003	0.9930	0.2831		frequency	0.0127737	0.0967153	0.844891	0.0456204
+PGD	2x	65	0 (0.0%)	0 (0.0%)	130	2	1.08	2.00	0.0745	0.077	-0.032	0.9270	0.0745		frequency	0	0.0384615	0.961538	0
+PGD	4x	74	2 (2.7%)	0 (0.0%)	288	4	1.74	3.95	0.4241	0.407	0.040	0.2600	0.4241		frequency	0.0243056	0.149306	0.739583	0.0868056
+
+DIA															DIA alleles:	1	2
+DIA	All populations confounded	139	28 (20.1%)	0 (0.0%)	330	2	1.99	2.00	0.4978	0.407	0.184	0.0000	0.5841		frequency	0.542793	0.457207
+DIA	2x	65	8 (12.3%)	0 (0.0%)	114	2	1.62	2.00	0.3827	0.404	-0.055	0.7080	0.3827		frequency	0.745614	0.254386
+DIA	4x	74	20 (27.0%)	0 (0.0%)	216	2	1.80	2.00	0.4434	0.410	0.075	0.1590	0.4434		frequency	0.328704	0.671296
+
+PGM1															PGM1 alleles:	1	2
+PGM1	All populations confounded	139	24 (17.3%)	0 (0.0%)	340	2	1.83	2.00	0.4523	0.365	0.249	0.0000	0.4511		frequency	0.656522	0.343478
+PGM1	2x	65	5 (7.7%)	0 (0.0%)	120	2	1.86	2.00	0.4637	0.417	0.102	0.4310	0.4637		frequency	0.641667	0.358333
+PGM1	4x	74	19 (25.7%)	0 (0.0%)	220	2	1.79	2.00	0.4423	0.309	0.304	0.0000	0.4423		frequency	0.672727	0.327273
+
+PGM2															PGM2 alleles:	1	2	4
+PGM2	All populations confounded	139	40 (28.8%)	0 (0.0%)	298	3	1.27	2.96	0.2139	0.170	0.094	0.0930	0.2310		frequency	0.0984849	0.881313	0.020202
+PGM2	2x	65	16 (24.6%)	0 (0.0%)	98	2	1.02	2.00	0.0204	0.020	0.000	0.2710	0.0204		frequency	0.0102041	0.989796	0
+PGM2	4x	74	24 (32.4%)	0 (0.0%)	200	3	1.58	3.00	0.3654	0.317	0.135	0.0230	0.3654		frequency	0.185	0.775	0.04
+
+SELFING RATE ESTIMATION based on STANDARDIZED IDENTITY DISEQUILIBRIUM (assume a Mixed Mating Model; SE = standard errors estimated by jackknife over loci; method described in Hardy 2015)
+Estimates assume an autopolyploid organism with chromosome segregation (i.e. double reduction alpha=0 at all loci)
+
+Estimations based on given GENOTYPES. 
+Population	Ploidy	g2g(multilocus std identity disequilibrium based on genotypes, corrected for rates of double reduction (alpha))	SE(g2g)	Pval(g2g=0)		Sg(selfing rate estimation)	SE(Sg)		g2g per locus pair	LAP-PGD	LAP-DIA	LAP-PGM1	LAP-PGM2	PGD-DIA	PGD-PGM1	PGD-PGM2	DIA-PGM1	DIA-PGM2	PGM1-PGM2
+2x	2	0.00328372	0.0904758	0.439439		0.0129232	0.151599			0	0	0	0	0	0	0	0	0	0
+4x	4	-0.0434664	0.0541051	0.931932		0	0			0	0	0	0	0	0	0	0	0	0
+
+Estimations based on PHENOTYPES (i.e. considering the number of alleles observed per single locus, irrespective of allele dosage)
+Population	Ploidy	g2p(multilocus std identity disequilibrium based on phenotypes,corrected for rates of double reduction (alpha))	SE(g2p)	Pval(g2p=0)		Sp(selfing rate estimation)	SE(Sp)		g2p per locus pair	LAP-PGD	LAP-DIA	LAP-PGM1	LAP-PGM2	PGD-DIA	PGD-PGM1	PGD-PGM2	DIA-PGM1	DIA-PGM2	PGM1-PGM2
+2x	2	0.00328372	0.0904758	0.425425		0.0129232	0.151599			0	0	0	0	0	0	0	0	0	0
+4x	4	-0.0196148	0.0427263	0.757758		0	0.0573171			0	0	0	0	0	0	0	0	0	0
+
+
+VALUES OF THE COMPUTED STATISTICS
+Genetic analyses at POPULATION level (1 pop = 1 CATEGORICAL GROUP -> 2 populations)
+Dist classes						1	2	3	4	5	6
+Max distance						2	4	6	10	20	30
+Number of pairs						0	0	0	0	1	0
+% partic										100.0	
+CV partic										0.00	
+Mean distance										10.5656	
+Mean ln(distance)										2.3576	
+
+	Global F-statistics 					Pairwise Fst (ANOVA approach)							distance range for regression analyses
+Locus	Fit	Fis	Fst			1	2	3	4	5	6	average	0-30	b-lin(slope linear dist)	b-log(slope log dist)
+ALL LOCI	0.1802	0.0821	0.1069							0.1069		0.1069			
+LAP	0.1027	0.0787	0.0261							0.0261		0.0261			
+PGD	0.0510	-0.0489	0.0952							0.0952		0.0952			
+DIA	0.3114	0.0330	0.2878							0.2878		0.2878			
+PGM1	0.2461	0.2514	-0.0071							-0.0071		-0.0071			
+PGM2	0.1583	0.0346	0.1282							0.1282		0.1282			
+Jackknifed estimators (over loci)
+Mean	0.1801	0.0841	0.1065							0.1065		0.1065			
+SE	0.0543	0.0468	0.0659							0.0659		0.0659			
+
+	Global F-statistics 					Pairwise Rho (ANOVA approach)							distance range for regression analyses
+Locus	Fit	Fis	Fst	Rho		1	2	3	4	5	6	average	0-30	b-lin(slope linear dist)	b-log(slope log dist)
+ALL LOCI	0.1802	0.0821	0.1069	0.2376						0.2376		0.2376			
+LAP	0.1027	0.0787	0.0261	0.0629						0.0629		0.0629			
+PGD	0.0510	-0.0489	0.0952	0.2975						0.2975		0.2975			
+DIA	0.3114	0.0330	0.2878	0.5181						0.5181		0.5181			
+PGM1	0.2461	0.2514	-0.0071	-0.0135						-0.0135		-0.0135			
+PGM2	0.1583	0.0346	0.1282	0.3502						0.3502		0.3502			
+Jackknifed estimators (over loci)
+Mean	0.1801	0.0841	0.1065	0.2419						0.2419		0.2419			
+SE	0.0543	0.0468	0.0659	0.1397						0.1397		0.1397			
+
+LOCATIONS, INDIVIDUALS and/or GENES PERMUTATION TESTS -> Ho: obs=exp (exp = mean value after permutation)
+Initial seed= 2133809355
+
+ALL LOCI	Global F-statistics 					Pairwise Fst
+	Fit	Fis	Fst			1	2	3	4	5	6	average		b-lin (slope linear dist)	b-log (slope ln(dist))
+Object permuted	GaI	GaIwP	IaP							PLaP		PLaP			
+N valid permut	999	999	999							999		999			
+N different permut val	999	999	999							1		1			
+Obs val	0.180221	0.0820554	0.106941							0.106941		0.106941			
+Mean permut val	-0.00039133	-0.0269116	0.00038972							0.106941		0.106941			
+SD permut val	0.0201396	0.0192418	0.0045282							0		0			
+95%CI-inf	-0.0379881	-0.0649846	-0.00552283							0.106941		0.106941			
+95%CI-sup	0.0393731	0.0108766	0.0113628							0.106941		0.106941			
+P(1-sided test, H1: obs<exp)	1.0000	1.0000	1.0000							1.0000		1.0000			
+P(1-sided test, H1: obs>exp)	0.0000	0.0000	0.0000							1.0000		1.0000			
+P(2-sided test, H1: obs<>exp)	0.0000	0.0000	0.0000							1.0000		1.0000			
+
+LAP	Global F-statistics 					Pairwise Fst
+	Fit	Fis	Fst			1	2	3	4	5	6	average		b-lin (slope linear dist)	b-log (slope ln(dist))
+Object permuted	GaI	GaIwP	IaP							PLaP		PLaP			
+N valid permut	999	999	999							999		999			
+N different permut val	994	60	993							1		1			
+Obs val	0.102729	0.0786562	0.0261275							0.0261275		0.0261275			
+Mean permut val	0.000193678	0.00143105	0.000328794							0.0261275		0.0261275			
+SD permut val	0.0288129	0.0297384	0.0057411							0		0			
+95%CI-inf	-0.0556399	-0.0516284	-0.005651							0.0261275		0.0261275			
+95%CI-sup	0.0576697	0.0645125	0.0163004							0.0261275		0.0261275			
+P(1-sided test, H1: obs<exp)	0.9990	0.9910	0.9960							1.0000		1.0000			
+P(1-sided test, H1: obs>exp)	0.0020	0.0100	0.0050							1.0000		1.0000			
+P(2-sided test, H1: obs<>exp)	0.0030	0.0190	0.0090							1.0000		1.0000			
+
+PGD	Global F-statistics 					Pairwise Fst
+	Fit	Fis	Fst			1	2	3	4	5	6	average		b-lin (slope linear dist)	b-log (slope ln(dist))
+Object permuted	GaI	GaIwP	IaP							PLaP		PLaP			
+N valid permut	999	999	999							999		999			
+N different permut val	944	37	951							1		1			
+Obs val	0.0510088	-0.0488923	0.0952444							0.0952444		0.0952444			
+Mean permut val	0.000755652	-0.0889787	0.000775702							0.0952444		0.0952444			
+SD permut val	0.037567	0.0354609	0.00591041							0		0			
+95%CI-inf	-0.0673106	-0.151533	-0.00456375							0.0952444		0.0952444			
+95%CI-sup	0.0790899	-0.0147238	0.0170515							0.0952444		0.0952444			
+P(1-sided test, H1: obs<exp)	0.9100	0.8710	1.0000							1.0000		1.0000			
+P(1-sided test, H1: obs>exp)	0.0910	0.1570	0.0000							1.0000		1.0000			
+P(2-sided test, H1: obs<>exp)	0.1810	0.2860	0.0000							1.0000		1.0000			
+
+DIA	Global F-statistics 					Pairwise Fst
+	Fit	Fis	Fst			1	2	3	4	5	6	average		b-lin (slope linear dist)	b-log (slope ln(dist))
+Object permuted	GaI	GaIwP	IaP							PLaP		PLaP			
+N valid permut	999	999	999							999		999			
+N different permut val	389	27	693							1		1			
+Obs val	0.311371	0.0330378	0.287843							0.287843		0.287843			
+Mean permut val	0.000688726	-0.0107381	-0.000447985							0.287843		0.287843			
+SD permut val	0.0540265	0.0507923	0.0111764							0		0			
+95%CI-inf	-0.102433	-0.109338	-0.00879163							0.287843		0.287843			
+95%CI-sup	0.117292	0.0876665	0.0288954							0.287843		0.287843			
+P(1-sided test, H1: obs<exp)	1.0000	0.8300	1.0000							1.0000		1.0000			
+P(1-sided test, H1: obs>exp)	0.0000	0.2350	0.0000							1.0000		1.0000			
+P(2-sided test, H1: obs<>exp)	0.0000	0.4050	0.0000							1.0000		1.0000			
+
+PGM1	Global F-statistics 					Pairwise Fst
+	Fit	Fis	Fst			1	2	3	4	5	6	average		b-lin (slope linear dist)	b-log (slope ln(dist))
+Object permuted	GaI	GaIwP	IaP							PLaP		PLaP			
+N valid permut	999	999	999							999		999			
+N different permut val	347	34	705							1		1			
+Obs val	0.246075	0.2514	-0.00711307							-0.00711307		-0.00711307			
+Mean permut val	-0.00359646	0.00538592	-1.59919E-05							-0.00711307		-0.00711307			
+SD permut val	0.054023	0.0529969	0.012604							0		0			
+95%CI-inf	-0.102157	-0.0878637	-0.00943028							-0.00711307		-0.00711307			
+95%CI-sup	0.107067	0.112033	0.0384804							-0.00711307		-0.00711307			
+P(1-sided test, H1: obs<exp)	1.0000	1.0000	0.3800							1.0000		1.0000			
+P(1-sided test, H1: obs>exp)	0.0000	0.0000	0.6210							1.0000		1.0000			
+P(2-sided test, H1: obs<>exp)	0.0000	0.0000	0.7590							1.0000		1.0000			
+
+PGM2	Global F-statistics 					Pairwise Fst
+	Fit	Fis	Fst			1	2	3	4	5	6	average		b-lin (slope linear dist)	b-log (slope ln(dist))
+Object permuted	GaI	GaIwP	IaP							PLaP		PLaP			
+N valid permut	999	999	999							999		999			
+N different permut val	624	32	883							1		1			
+Obs val	0.158326	0.0345777	0.12818							0.12818		0.12818			
+Mean permut val	-0.000226222	-0.113167	0.00199725							0.12818		0.12818			
+SD permut val	0.0533164	0.054154	0.0129101							0		0			
+95%CI-inf	-0.0948259	-0.218395	-0.00826662							0.12818		0.12818			
+95%CI-sup	0.121123	0.00431206	0.0405177							0.12818		0.12818			
+P(1-sided test, H1: obs<exp)	0.9940	0.9940	1.0000							1.0000		1.0000			
+P(1-sided test, H1: obs>exp)	0.0070	0.0070	0.0000							1.0000		1.0000			
+P(2-sided test, H1: obs<>exp)	0.0130	0.0130	0.0000							1.0000		1.0000			
+
+
+
+ALL LOCI	Global F-statistics 					Pairwise Rho
+	Fit	Fis	Fst	Rho		1	2	3	4	5	6	average		b-lin (slope linear dist)	b-log (slope ln(dist))
+Object permuted	GaI	GaIwP	IaP	IaP						PLaP		PLaP			
+N valid permut	999	999	999	999						999		999			
+N different permut val	999	999	999	999						1		1			
+Obs val	0.180221	0.0820554	0.106941	0.237578						0.237578		0.237578			
+Mean permut val	-0.00039133	-0.0269116	0.00038972	-0.000216454						0.237578		0.237578			
+SD permut val	0.0201396	0.0192418	0.0045282	0.0102283						0		0			
+95%CI-inf	-0.0379881	-0.0649846	-0.00552283	-0.013388						0.237578		0.237578			
+95%CI-sup	0.0393731	0.0108766	0.0113628	0.02379						0.237578		0.237578			
+P(1-sided test, H1: obs<exp)	1.0000	1.0000	1.0000	1.0000						1.0000		1.0000			
+P(1-sided test, H1: obs>exp)	0.0000	0.0000	0.0000	0.0000						1.0000		1.0000			
+P(2-sided test, H1: obs<>exp)	0.0000	0.0000	0.0000	0.0000						1.0000		1.0000			
+
+LAP	Global F-statistics 					Pairwise Rho
+	Fit	Fis	Fst	Rho		1	2	3	4	5	6	average		b-lin (slope linear dist)	b-log (slope ln(dist))
+Object permuted	GaI	GaIwP	IaP	IaP						PLaP		PLaP			
+N valid permut	999	999	999	999						999		999			
+N different permut val	994	60	993	991						1		1			
+Obs val	0.102729	0.0786562	0.0261275	0.0628986						0.0628986		0.0628986			
+Mean permut val	0.000193678	0.00143105	0.000328794	0.000472636						0.0628986		0.0628986			
+SD permut val	0.0288129	0.0297384	0.0057411	0.0140549						0		0			
+95%CI-inf	-0.0556399	-0.0516284	-0.005651	-0.0144995						0.0628986		0.0628986			
+95%CI-sup	0.0576697	0.0645125	0.0163004	0.0404594						0.0628986		0.0628986			
+P(1-sided test, H1: obs<exp)	0.9990	0.9910	0.9960	0.9960						1.0000		1.0000			
+P(1-sided test, H1: obs>exp)	0.0020	0.0100	0.0050	0.0050						1.0000		1.0000			
+P(2-sided test, H1: obs<>exp)	0.0030	0.0190	0.0090	0.0090						1.0000		1.0000			
+
+PGD	Global F-statistics 					Pairwise Rho
+	Fit	Fis	Fst	Rho		1	2	3	4	5	6	average		b-lin (slope linear dist)	b-log (slope ln(dist))
+Object permuted	GaI	GaIwP	IaP	IaP						PLaP		PLaP			
+N valid permut	999	999	999	999						999		999			
+N different permut val	944	37	951	756						1		1			
+Obs val	0.0510088	-0.0488923	0.0952444	0.2975						0.2975		0.2975			
+Mean permut val	0.000755652	-0.0889787	0.000775702	-0.000224016						0.2975		0.2975			
+SD permut val	0.037567	0.0354609	0.00591041	0.016488						0		0			
+95%CI-inf	-0.0673106	-0.151533	-0.00456375	-0.0142901						0.2975		0.2975			
+95%CI-sup	0.0790899	-0.0147238	0.0170515	0.0461923						0.2975		0.2975			
+P(1-sided test, H1: obs<exp)	0.9100	0.8710	1.0000	1.0000						1.0000		1.0000			
+P(1-sided test, H1: obs>exp)	0.0910	0.1570	0.0000	0.0000						1.0000		1.0000			
+P(2-sided test, H1: obs<>exp)	0.1810	0.2860	0.0000	0.0000						1.0000		1.0000			
+
+DIA	Global F-statistics 					Pairwise Rho
+	Fit	Fis	Fst	Rho		1	2	3	4	5	6	average		b-lin (slope linear dist)	b-log (slope ln(dist))
+Object permuted	GaI	GaIwP	IaP	IaP						PLaP		PLaP			
+N valid permut	999	999	999	999						999		999			
+N different permut val	389	27	693	263						1		1			
+Obs val	0.311371	0.0330378	0.287843	0.518137						0.518137		0.518137			
+Mean permut val	0.000688726	-0.0107381	-0.000447985	-0.00118661						0.518137		0.518137			
+SD permut val	0.0540265	0.0507923	0.0111764	0.0226499						0		0			
+95%CI-inf	-0.102433	-0.109338	-0.00879163	-0.0184471						0.518137		0.518137			
+95%CI-sup	0.117292	0.0876665	0.0288954	0.0610751						0.518137		0.518137			
+P(1-sided test, H1: obs<exp)	1.0000	0.8300	1.0000	1.0000						1.0000		1.0000			
+P(1-sided test, H1: obs>exp)	0.0000	0.2350	0.0000	0.0000						1.0000		1.0000			
+P(2-sided test, H1: obs<>exp)	0.0000	0.4050	0.0000	0.0000						1.0000		1.0000			
+
+PGM1	Global F-statistics 					Pairwise Rho
+	Fit	Fis	Fst	Rho		1	2	3	4	5	6	average		b-lin (slope linear dist)	b-log (slope ln(dist))
+Object permuted	GaI	GaIwP	IaP	IaP						PLaP		PLaP			
+N valid permut	999	999	999	999						999		999			
+N different permut val	347	34	705	262						1		1			
+Obs val	0.246075	0.2514	-0.00711307	-0.0134994						-0.0134994		-0.0134994			
+Mean permut val	-0.00359646	0.00538592	-1.59919E-05	-0.000946871						-0.0134994		-0.0134994			
+SD permut val	0.054023	0.0529969	0.012604	0.0230288						0		0			
+95%CI-inf	-0.102157	-0.0878637	-0.00943028	-0.0177988						-0.0134994		-0.0134994			
+95%CI-sup	0.107067	0.112033	0.0384804	0.0651083						-0.0134994		-0.0134994			
+P(1-sided test, H1: obs<exp)	1.0000	1.0000	0.3800	0.3990						1.0000		1.0000			
+P(1-sided test, H1: obs>exp)	0.0000	0.0000	0.6210	0.6080						1.0000		1.0000			
+P(2-sided test, H1: obs<>exp)	0.0000	0.0000	0.7590	0.7910						1.0000		1.0000			
+
+PGM2	Global F-statistics 					Pairwise Rho
+	Fit	Fis	Fst	Rho		1	2	3	4	5	6	average		b-lin (slope linear dist)	b-log (slope ln(dist))
+Object permuted	GaI	GaIwP	IaP	IaP						PLaP		PLaP			
+N valid permut	999	999	999	999						999		999			
+N different permut val	624	32	883	494						1		1			
+Obs val	0.158326	0.0345777	0.12818	0.350155						0.350155		0.350155			
+Mean permut val	-0.000226222	-0.113167	0.00199725	0.000387886						0.350155		0.350155			
+SD permut val	0.0533164	0.054154	0.0129101	0.0260788						0		0			
+95%CI-inf	-0.0948259	-0.218395	-0.00826662	-0.0204325						0.350155		0.350155			
+95%CI-sup	0.121123	0.00431206	0.0405177	0.0828948						0.350155		0.350155			
+P(1-sided test, H1: obs<exp)	0.9940	0.9940	1.0000	1.0000						1.0000		1.0000			
+P(1-sided test, H1: obs>exp)	0.0070	0.0070	0.0000	0.0000						1.0000		1.0000			
+P(2-sided test, H1: obs<>exp)	0.0130	0.0130	0.0000	0.0000						1.0000		1.0000			
+
+
+
+ 

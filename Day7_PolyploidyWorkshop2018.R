@@ -37,6 +37,7 @@ dipTraj = function(s, h, start_freq, end_freq, max_gens){
   p = start_freq
   gen = 0
   fits = c(1 + s, 1 + (s * h), 1) / (1 + s)
+  
   while (p < end_freq & gen < max_gens){
     q = 1 - p
     Gfreqs = c(p ^ 2, 2 * p * q, q ^ 2)
@@ -46,12 +47,12 @@ dipTraj = function(s, h, start_freq, end_freq, max_gens){
     p_prime = num / w.bar
     dp1 = p_prime - p
     dp2 = (p * (w.bar.p - w.bar)) / w.bar
-    p = p_prime
     var.w = sum((Gfreqs * (fits - w.bar) ^ 2) / length(Gfreqs))
-    gen = gen + 1
-    
     df = rbind(df, c(s, h, gen, p, dp1, dp2, w.bar, var.w, w.bar.p, NA, NA, 2))
+    p = p_prime
+    gen = gen + 1
   }
+  df = rbind(df, c(s, h, gen, p, dp1, dp2, w.bar, var.w, w.bar.p, NA, NA, 2))
   return(df[-1,])
 }
 tetTraj = function(s, h1, h2, h3, start_freq, end_freq, max_gens){
@@ -70,11 +71,12 @@ tetTraj = function(s, h1, h2, h3, start_freq, end_freq, max_gens){
     p_prime = num / w.bar
     dp1 = p_prime - p
     dp2 = (p * (w.bar.p - w.bar)) / w.bar
-    p = p_prime
     var.w = sum((Gfreqs * (fits - w.bar) ^ 2) / length(Gfreqs))
-    gen = gen + 1
     df = rbind(df, c(s, h2, gen, p, dp1, dp2, w.bar, var.w, w.bar.p, h1, h3, 4))
+    p = p_prime
+    gen = gen + 1
   }
+  df = rbind(df, c(s, h2, gen, p, dp1, dp2, w.bar, var.w, w.bar.p, h1, h3, 4))
   return(df[-1,])
 }
 
@@ -403,15 +405,32 @@ var_fit = ggplot(fits, aes(x=freq, y=var.w, color = as.factor(ploidy), linetype=
 
 #Generate allele frequency trajectory for diploids and tetraploids given selection strength and dominance
 s = 0.1
+h = 0.5
+h1 = 0.25
+h2 = 0.5
+h3 = 0.75
+
+traj_add = rbind(dipTraj(s, h, 0.05, 0.99, 9999), tetTraj(s, h1, h2, h3, 0.05, 0.99, 9999))
+
+# Plot allele frequency change over time for additive beneficial allele
+traj_plot_add = ggplot(traj_add, aes(x=gen, y=freq, color=ploidy)) + geom_line() + scale_color_manual(name="Ploidy",values=c('red','blue')) + theme_bw() + xlab("Generation") + ylab("Allele Frequency")
+
+# Plot the mean fitness over time for an additive beneficial allele. Q96
+fit_plot_add = ggplot(traj_add, aes(x=gen, y=w.bar, color=ploidy)) + geom_line() + scale_color_manual(name="Ploidy",values=c('red','blue')) + theme_bw() + xlab("Generation") + ylab("Mean Fitness")
+
+#Generate allele frequency trajectory for diploids and tetraploids given selection strength and dominance Q97
+s = 0.1
 h = 1
 h1 = 1
 h2 = 1
 h3 = 1
 
-traj1 = rbind(dipTraj(s, h, 0.05, 0.99, 9999), tetTraj(s, h1, h2, h3, 0.05, 0.99, 9999))
+traj_dom = rbind(dipTraj(s, h, 0.05, 0.99, 300), tetTraj(s, h1, h2, h3, 0.05, 0.99, 300))
 
 # Plot allele frequency change over time for additive beneficial allele
-traj_plot = ggplot(traj1, aes(x=gen, y=freq, color=ploidy)) + geom_line() + scale_color_manual(name="Ploidy",values=c('red','blue')) + theme_bw() + xlab("Generation") + ylab("Allele Frequency")
+traj_plot_dom = ggplot(traj_dom, aes(x=gen, y=freq, color=ploidy)) + geom_line() + scale_color_manual(name="Ploidy",values=c('red','blue')) + theme_bw() + xlab("Generation") + ylab("Allele Frequency")
+# Plot the mean fitness over time for a dominant beneficial allele. 
+fit_plot_dom = ggplot(traj_dom, aes(x=gen, y=w.bar, color=ploidy)) + geom_line() + scale_color_manual(name="Ploidy",values=c('red','blue')) + theme_bw() + xlab("Generation") + ylab("Mean Fitness")
 
 #Generate allele frequency trajectory for a range of basic values of s and h
 traj = simTraj()
