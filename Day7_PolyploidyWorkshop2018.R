@@ -258,7 +258,7 @@ msselRun = function(N, n, trajectory, outfile = -9, L = 1000000, mu = 1e-8, r = 
   return(outfile)
 }
 
-msselCalc <- function(in_file, numWindows, samp_sizes, outgroup = 21, slideRate=0.5, selPop=1, linkage_stats = c("Kelly.Z_nS"), neutrality_stats = c("Tajima.D", "Fay.Wu.H", "Zeng.E")){
+msselCalc <- function(in_file, numWindows, samp_sizes, Nsites, outgroup = 21, slideRate=0.5, selPop=1, linkage_stats = c("Kelly.Z_nS"), neutrality_stats = c("Tajima.D", "Fay.Wu.H", "Zeng.E")){
   # Define some necessary functions
   read.ms.output2 <- function(txt=NA, file.ms.output=NA, MSMS=FALSE) {
     
@@ -542,7 +542,7 @@ new_traj = PloidyForSim(ploidy, pop_size, selection_coeff, dominance)
 infile = msselRun(N = pop_size, n = samp_num, new_traj, L = seq_len, mu = mutation_rate, r = recomb_rate, ploidy = ploidy, ms = path_to_mssel)
 
 # calculate population genetic metrics in sliding windows across simulated region
-dat = msselCalc(infile, numWindows = 200, rep(ploidy * samp_num, 2))
+dat = msselCalc(infile, numWindows = 200, rep(ploidy * samp_num, 2), Nsites = seq_len)
 
 # Plotting
 ggplot() + geom_line(data = dat, aes(x = bp.end, y = Pi.1), color = "red") + geom_line(data = dat, aes(x = bp.end, y = Pi.2), color = "blue") + xlab("Position (bp)") + ylab("Diversity")
