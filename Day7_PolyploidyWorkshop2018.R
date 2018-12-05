@@ -439,7 +439,7 @@ msselCalc <- function(in_file, numWindows, samp_sizes, Nsites, outgroup = 21, sl
 
 ####### Begin: Class examples ###########
 
-# Q84
+# Q9
 dipTraj(s = 0.5, h = 0, start_freq = 0.5)
 dipTraj(s = 0.5, h = 0.5, start_freq = 0.5)
 dipTraj(s = 0.5, h = 1, start_freq = 0.5)
@@ -447,17 +447,17 @@ dipTraj(s = 0.5, h = 0, start_freq = 0.05)
 dipTraj(s = 0.5, h = 0.5, start_freq = 0.05)
 dipTraj(s = 0.5, h = 1, start_freq = 0.05)
 
-# Q86
+# Q13
 getFits(freqs = 0.5, s = 0.1, h1 = 0.25, h = 0.5, h3 = 0.75) %>% select(ploidy, w.bar)
 
-# Q87
+# Q14
 # Calculate diploid/tetraploid fitness metrics across entire range of allele frequency values
 fits = getFits(seq(0, 1, 0.01), c(0.1, 0.01, 0.001), c(0.25, 1, 0), c(0.5, 1, 0), c(0.75, 1, 0))
 # Plot mean fitness 
 mean_fit = ggplot(fits[fits$s==0.1,], aes(x=freq, y=w.bar, color = as.factor(ploidy), linetype=as.factor(h))) + geom_line() + scale_color_manual(name="Ploidy",values=c("red","blue")) + scale_linetype_discrete(name="Dominance", labels=c("Recessive","Additive","Dominant")) + xlab("Allele Frequency") + ylab("Mean Fitness") + theme_bw()
 mean_fit
 
-# Q88
+# Q15
 dipTraj(s = 0.1, h = 0.5, start_freq = 0.5) %>% select(dp1)
 tetTraj(s = 0.1, h1 = 0.25, h2 = 0.5, h3 = 0.75, start_freq = 0.5) %>% select(dp1)
 dipTraj(s = 0.1, h = 1, start_freq = 0.5) %>% select(dp1)
@@ -465,7 +465,7 @@ tetTraj(s = 0.1, h1 = 1, h2 = 1, h3 = 1, start_freq = 0.5) %>% select(dp1)
 dipTraj(s = 0.1, h = 0, start_freq = 0.5) %>% select(dp1)
 tetTraj(s = 0.1, h1 = 0, h2 = 0, h3 = 0, start_freq = 0.5) %>% select(dp1)
 
-# Q89
+# Q16
 #Generate allele frequency trajectory for diploids and tetraploids given selection strength and dominance
 dip_add_traj = dipTraj(s = 0.1, h = 0.5, start_freq = 0.05, end_freq = 0.99, maxGens = 9999)
 tet_add_traj = tetTraj(s = 0.1, h1 = 0.25, h2 = 0.5, h3 = 0.75, start_freq = 0.05, end_freq = 0.99, maxGens = 9999)
@@ -475,22 +475,22 @@ traj_add = rbind(dip_add_traj, tet_add_traj)
 # Plot allele frequency change over time for additive beneficial allele
 traj_plot_add = ggplot(traj_add, aes(x=gen, y=freq, color=ploidy)) + geom_line() + scale_color_manual(name="Ploidy",values=c('red','blue')) + theme_bw() + xlab("Generation") + ylab("Allele Frequency")
 
-# Q92 
+# Q19
 getFix(p = 1/200, s = 0.01, N = 100, ploidy = 2)
 getFix(p = 1/2000, s = 0.01, N = 1000, ploidy = 2)
 getFix(p = 1/20000, s = 0.01, N = 10000, ploidy = 2)
 
-# Q93
+# Q20
 getFix(p = 1/200, s = 0.01, N = 100, ploidy = 2)
 getFix(p = 1/400, s = 0.01, N = 100, ploidy = 4)
 getFix(p = 1/2000, s = 0.01, N = 1000, ploidy = 2)
 getFix(p = 1/4000, s = 0.01, N = 1000, ploidy = 4) 
 
-# Q94
+# Q21
 getFix(p = 1/2000, s = 0.5 * 0.01, N = 1000, ploidy = 2)
 getFix(p = 1/4000, s = 0.25 * 0.01, N = 1000, ploidy = 4)
 
-# Q96
+# Q23
 # Plot the mean fitness over time for an additive beneficial allele. 
 fit_plot_add = ggplot(traj_add, aes(x=gen, y=w.bar, color=ploidy)) + geom_line() + scale_color_manual(name="Ploidy",values=c('red','blue')) + theme_bw() + xlab("Generation") + ylab("Mean Fitness")
 fit_plot_add
@@ -507,7 +507,7 @@ fit_plot_dom = ggplot(traj_dom, aes(x=gen, y=w.bar, color=ploidy)) + geom_line()
 traj_plot_dom
 fit_plot_dom
 
-# Q100
+# Q27
 dip_traj1 = dipTraj(s = 0.01, h = 0, start_freq = 0.00316, end_freq = 0.99, maxGens = 9999)
 tet_traj1 = tetTraj(s = 0.01, h1 = 0, h2 = 0.5, h3 = 0.75, start_freq = 0.0562, end_freq = 0.99, maxGens = 9999)
 traj1 = rbind(dip_traj1, tet_traj1)
@@ -536,7 +536,7 @@ path_to_mssel = "XXXXXXX"
 path_to_mssel = "/Users/pmonnahan/Documents/Research/code/dmc/mssel_modified/mssel"
  
 # Perform stochastic simulations for selection on beneficial allele
-new_traj = PloidyForSim(ploidy, pop_size, selection_coeff, dominance)
+new_traj = PloidyForSim2(ploidy, pop_size, selection_coeff, dominance)
 
 # Run mssel
 infile = msselRun(N = pop_size, n = samp_num, new_traj, L = seq_len, mu = mutation_rate, r = recomb_rate, ploidy = ploidy, ms = path_to_mssel)
@@ -571,27 +571,34 @@ traj = simTraj()
 # Plot allele frequency change over time for additive, dominant, and recessive beneficial allele
 traj_all_plot = ggplot(traj[traj$s==0.1,], aes(x=gen, y=freq, linetype=as.factor(h), color=ploidy)) + geom_line() + scale_color_manual(name="Ploidy",values=c("red","blue")) + scale_linetype_discrete(name="Dominance", labels=c("Recessive","Additive","Dominant")) + xlab("Generation") + ylab("Allele Frequency") + theme_bw() + xlim(0,300)
 
+dat = data.frame()
+
 ploidy = 2
-pop_size = 10000 # Keep this value above 100 and below 1000000 (computation time will increase with increasing pop_size)
-selection_coeff = 0.1 # Keep this between 0 and 1
-dominance = 0.5 # Must be vector of 3 numbers if ploidy = 4. For example, c(0.25, 0.5, 0.75) for an additive allele.
+pop_size = c(1000, 10000) # Keep this value above 100 and below 1000000 (computation time will increase with increasing pop_size)
+selection_coeff = c(0.1, 0.01) # Keep this between 0 and 1
+dominance = c(1, 0.5, 0) # Must be vector of 3 numbers if ploidy = 4. For example, c(0.25, 0.5, 0.75) for an additive allele
+#dominance = c(0.25, 0.5, 0.75) 
 seq_len = 1000000 # Length of sequence that we will simulate with mssel.  Increasing this value will increase computation time.
-mutation_rate = 1e-8 # per-base mutation rate; mu
-recomb_rate = 1e-8 # per-base recombination rate; r
+mutation_rate = c(1e-8, 1e-7) # per-base mutation rate; mu
+recomb_rate = c(1e-8, 1e-7) # per-base recombination rate; r
+sampGen = c(0, 500)
 samp_num = 10 # number of individuals to sample
 path_to_mssel = "/Users/pmonnahan/Documents/Research/code/dmc/mssel_modified/mssel"
+num_reps = 5
 
-dat = data.frame()
-num_reps = 10
-for (i in 1:num_reps){
-  new_traj = PloidyForSim2(ploidy, pop_size, selection_coeff, dominance)
-  
-  # Run mssel
-  infile = msselRun(N = pop_size, n = samp_num, new_traj, L = seq_len, mu = mutation_rate, r = recomb_rate, ploidy = ploidy, ms = path_to_mssel)
-  
-  # calculate population genetic metrics in sliding windows across simulated region
-  ndat = msselCalc(infile, numWindows = 200, rep(ploidy * samp_num, 2))
-  ndat['rep'] = i
-  dat = rbind(dat, ndat)
+params = expand.grid(s = selection_coeff, dom = dominance, recomb = recomb_rate, sampGen = sampGen, N = pop_size, mu = mutation_rate)
+for (j in 1:nrow(params)){
+  for (i in 1:num_reps){
+    new_traj = PloidyForSim2(ploidy, params[j,]$N, params[j,]$s, params[j,]$dom)
+    
+    # Run mssel
+    infile = msselRun(N = params[j,]$N, n = samp_num, new_traj, L = seq_len, mu = params[j,]$mu, r = params[j,]$recomb, ploidy = ploidy, ms = path_to_mssel)
+    
+    # calculate population genetic metrics in sliding windows across simulated region
+    ndat = msselCalc(infile, numWindows = params[j,]$N / 50, rep(ploidy * samp_num, 2), Nsites = seq_len)
+    ndat %<>% mutate(rep = i, ploidy = ploidy, s = params[j,]$s, dom = params[j,]$dom, recomb = params[j,]$recomb, N = params[j,]$N, mu = params[j,]$mu)
+    dat = rbind(dat, ndat)
+  }
 }
 
+ggplot() + geom_smooth(data = dat, aes(x = bp.end, y = Pi.1, linetype = as.factor(ploidy)), color = "red", adjust = 0.3) + geom_smooth(data = dat, aes(x = bp.end, y = Pi.2, linetype = as.factor(ploidy)), color = "blue", adjust = 0.3) + xlab("Position (bp)") + ylab("Diversity")
